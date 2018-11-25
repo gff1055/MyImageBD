@@ -4,11 +4,12 @@
 //se existir o arquivo
 if(isset($_FILES["arquivo"])){
 	$arquivo = $_FILES["arquivo"];
-	$pasta_dir = "arquivos/";	//diretorio dos arquivos
+	$pasta_dir = "arquivos3/";	//diretorio dos arquivos
 
 	//se nao existir a pasta ele cria uma
 	if(!file_exists($pasta_dir)){
-		mkdir($pasta_dir);
+		mkdir($pasta_dir,0775);
+	//echo exec('whoami');
 	}
 
 	$arquivo_nome = $pasta_dir.$arquivo["name"];
@@ -17,8 +18,8 @@ if(isset($_FILES["arquivo"])){
 	move_uploaded_file($arquivo["tmp_name"], $arquivo_nome);
 
 	//conecta no banco
-	$cn = mysql_connect("localhost");
-	mysql_select_db("banco");
+//	$cn = mysql_connect("localhost");
+//	mysql_select_db("banco");
 
 
 	//aqui salva no banco o path da foto
@@ -29,6 +30,5 @@ mysql_close($cn); </font>
 
 }
 
- 
 
 ?>
